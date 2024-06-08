@@ -1,0 +1,15 @@
+.baslik {
+  border: 2px solid;
+}
+.buyuk {
+  height: 100px;
+}
+
+.yesil {
+  background-color: greenyellow;
+}
+
+.kirmizi {
+  color: red;
+  font-size: 35px;
+}
