@@ -329,3 +329,34 @@ yeniButon.style.color = "white";
 const item = document.createElement("li");
 item.innerText = "Adım 5";
 liste[0].appendChild(item);
+
+//*Kullanıcı fareyi hareket ettirdiğinde, mousemove etkinliği tetiklenir.
+//*Fare pozisyonu (X ve Y koordinatları) elde edilir.
+//Bu pozisyonda yeni bir span elemanı oluşturulur.
+//span elemanına rastgele bir boyut atanır.
+//span elemanı DOM'a eklenir ve ekranda görünür hale gelir.
+//3 saniye sonra, span elemanı DOM'dan kaldırılır ve ekrandan kaybolur.
+
+const bodyEl = document.querySelector("body");
+
+//Tabii, bu JavaScript kodu, fare hareket ettiğinde ekrana dinamik olarak belirli büyüklükte ve konumda span elemanları ekler ve daha sonra bu span elemanlarını bir süre sonra kaldırır. Bu kodun her bir kısmını ayrıntılı olarak açıklayalım.
+
+bodyEl.addEventListener("mousemove", (event) => {
+  //event.offsetX ve event.offsetY, farenin hareket ettiği yerin body öğesi içerisindeki X ve Y koordinatlarını temsil eder. Bu koordinatlar, xPos ve yPos değişkenlerine atanır.
+  const xPos = event.offsetX;
+  const yPos = event.offsetY;
+  //Bu kod bloğu, yeni bir span HTML elemanı oluşturur ve bu elemanın left ve top CSS stillerini farenin bulunduğu konuma ayarlar. xPos ve yPos değerleri piksel cinsinden belirtilir.
+  const spanEl = document.createElement("span");
+  spanEl.style.left = xPos + "px";
+  spanEl.style.top = yPos + "px";
+  //Math.random() fonksiyonu 0 ile 1 arasında rastgele bir sayı üretir. Bu sayı 100 ile çarpılarak 0 ile 100 piksel arasında rastgele bir boyut elde edilir. Bu boyut spanEl elemanının width ve height (genişlik ve yükseklik) stillerine uygulanır.
+  const size = Math.random() * 100;
+  spanEl.style.width = size + "px";
+  spanEl.style.height = size + "px";
+  //Bu satır, oluşturulan span elemanını body öğesinin sonuna ekler. Bu sayede, span elemanı ekranda görünür hale gelir.
+  bodyEl.appendChild(spanEl);
+  //setTimeout fonksiyonu, belirli bir süre sonra (burada 3000 milisaniye veya 3 saniye) belirtilen geri çağırma fonksiyonunu çalıştırır. Bu geri çağırma fonksiyonu içinde spanEl.remove() ifadesi, span elemanını DOM'dan kaldırır, yani görünmez hale getirir.
+  setTimeout(() => {
+    spanEl.remove();
+  }, 3000);
+});
